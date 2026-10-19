@@ -1,0 +1,97 @@
+{
+  "entities": {
+    "SchoolProfile": {
+      "title": "SchoolProfile",
+      "description": "School configuration, name, NPSN, and identity",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "npsn": { "type": "string" },
+        "address": { "type": "string" },
+        "city": { "type": "string" },
+        "province": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "website": { "type": "string" },
+        "principalName": { "type": "string" },
+        "principalNip": { "type": "string" },
+        "academicYear": { "type": "string" },
+        "semester": { "type": "string" },
+        "gradeLevel": { "type": "string" },
+        "logoUrl": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "User": {
+      "title": "User",
+      "description": "System user representing students, teachers, parents, or administrators",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["siswa", "guru", "orang_tua", "admin"] },
+        "avatar": { "type": "string" },
+        "email": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "classId": { "type": "string" },
+        "nisn": { "type": "string" },
+        "gender": { "type": "string" },
+        "parentName": { "type": "string" },
+        "parentPhone": { "type": "string" },
+        "status": { "type": "string", "enum": ["aktif", "nonaktif"] },
+        "parentConsentApproved": { "type": "boolean" }
+      },
+      "required": ["id", "name", "role"]
+    },
+    "SchoolClass": {
+      "title": "SchoolClass",
+      "description": "School classroom grouping for students and assigned teachers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "grade": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "academicYear": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "DailyJournal": {
+      "title": "DailyJournal",
+      "description": "Daily habit tracking entry with parent endorsement and teacher verification",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "date": { "type": "string" },
+        "habits": { "type": "object" },
+        "teacherVerification": { "type": "object" },
+        "parentEndorsement": { "type": "object" },
+        "totalPoints": { "type": "number" },
+        "completedHabitsCount": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "studentId", "date"]
+    }
+  },
+  "firestore": {
+    "/school_profile/{profileId}": {
+      "schema": "SchoolProfile",
+      "description": "School institutional profile and configuration"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile directory including students and teachers"
+    },
+    "/classes/{classId}": {
+      "schema": "SchoolClass",
+      "description": "Classroom definitions and assigned teachers"
+    },
+    "/journals/{journalId}": {
+      "schema": "DailyJournal",
+      "description": "Daily habit journals submitted by students, signed by parents, and reviewed by teachers"
+    }
+  }
+}

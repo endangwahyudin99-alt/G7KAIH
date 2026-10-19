@@ -1,0 +1,10 @@
+{
+  "name": "G7KAIH - 7 Kebiasaan Anak Indonesia Hebat",
+  "description": "Aplikasi pencatatan jurnal harian 7 Kebiasaan Anak Indonesia Hebat dengan bukti foto kegiatan, verifikasi guru, paraf orang tua, dan rekap statistik.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
